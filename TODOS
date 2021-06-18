@@ -1,0 +1,22 @@
+Set up database
+- Figure out how
+- Needs to save users, images
+
+Set up auth
+- Use 3rd party lib
+- Save user info to db
+- Only need admin user
+
+Upload images:
+- use POST to save images in public folder
+- use multer (read article)
+
+Once auth is set up, figure out how to protect route
+
+Need route - GET ALL images
+
+Later:
+integrate react carousel gallery
+
+Once all is working, can start migrating FF project to Next serverless format
+Eventually, can be uploaded to vercel for free serverless hosting
