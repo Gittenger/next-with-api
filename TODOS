@@ -1,6 +1,5 @@
 Set up database
-- Figure out how
-- Needs to save users, images
+- test saving users
 
 Set up auth
 - Use 3rd party lib
