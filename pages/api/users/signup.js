@@ -2,7 +2,7 @@ import dbConnect from '../../../utils/dbConnect'
 import authToken from '../../../utils/authToken'
 import User from '../../../models/userSchema'
 
-const { createAndSendToken, signToken } = authToken
+const { createAndSendToken } = authToken
 
 export default async function handler(req, res) {
 	const {
