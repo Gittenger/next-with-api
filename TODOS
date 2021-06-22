@@ -1,6 +1,5 @@
 SSR TASKS:
-- "Cookies" library for setting cookies server side
-- Login, logout, Forgot password, reset password, updateMe, deleteMe, updatePassowrd
+- logout, Forgot password, reset password, updateMe, deleteMe, updatePassowrd
 - Set up nodemailer
 - Graceful error handling
 - Protect routes
