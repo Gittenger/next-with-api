@@ -1,8 +1,8 @@
 SSR TASKS:
-- logout, Forgot password, reset password, updateMe, deleteMe, updatePassowrd
 - Set up nodemailer
+- Forgot password, reset password, updateMe, deleteMe, updatePassowrd
 - Graceful error handling
-- Protect routes
+- Protect routes (data fetching/server side redirect)
 
 IMAGES
 - use POST to save images in public folder
@@ -11,3 +11,4 @@ IMAGES
 
 Later:
 integrate react carousel gallery
+Deploy to Netlify
