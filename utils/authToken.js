@@ -3,7 +3,7 @@ import Cookies from 'cookies'
 import { promisify } from 'util'
 import User from '../models/userSchema'
 
-export const signToken = id =>
+export const signToken = (id) =>
 	jwt.sign({ id }, process.env.JWT_SECRET, {
 		expiresIn: process.env.JWT_EXPIRES_IN | 0,
 	})
@@ -35,7 +35,7 @@ export const createAndSendToken = (user, statusCode, req, res) => {
 	})
 }
 
-export const checkHeaders = async req => {
+export const checkHeaders = async (req) => {
 	let token
 
 	if (
@@ -76,9 +76,24 @@ export const checkHeaders = async req => {
 	return currentUser
 }
 
+export const protect = async (req, res) => {
+	const authUser = await checkHeaders(req)
+
+	if (authUser.error) {
+		res.status(authUser.status).json({
+			success: false,
+			message: authUser.message,
+		})
+		return null
+	} else {
+		return authUser
+	}
+}
+
 const authToken = {
 	signToken,
 	createAndSendToken,
+	protect,
 	checkHeaders,
 }
 
