@@ -1,9 +1,7 @@
 SSR TASKS:
 - Set up nodemailer
-- Forgot password, reset password, updateMe, deleteMe
-- Graceful error handling
-- Protect routes (data fetching/server side redirect)
-- Check updatePW function again
+- Forgot password, reset password, updateMe
+- Restrict route
 
 IMAGES
 - use POST to save images in public folder
