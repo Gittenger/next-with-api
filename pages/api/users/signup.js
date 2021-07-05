@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 
 				createAndSendToken(user, 200, req, res)
 			} catch (err) {
-				res.status(400).json({
+				res.status(500).json({
 					success: false,
 					err,
 				})

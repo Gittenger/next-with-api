@@ -15,26 +15,36 @@ export default async function handler(req, res) {
 
 	switch (method) {
 		case 'POST':
-			if (!email | !password) {
-				return res.status(400).json({
+			try {
+				if (!email | !password) {
+					return res.status(400).json({
+						success: false,
+						message: 'Email and password required.',
+					})
+				}
+
+				const user = await User.findOne({ email }).select('+password')
+
+				if (!user | !(await user.correctPassword(password, user.password))) {
+					return res.status(401).json({
+						success: false,
+						message: 'Incorrect email or password',
+					})
+				}
+
+				createAndSendToken(user, 200, req, res)
+			} catch (err) {
+				res.status(500).json({
 					success: false,
-					message: 'Email and password required.',
+					err,
 				})
 			}
-
-			const user = await User.findOne({ email }).select('+password')
-
-			if (!user | !(await user.correctPassword(password, user.password))) {
-				return res.status(401).json({
-					success: false,
-					message: 'Incorrect email or password',
-				})
-			}
-
-			createAndSendToken(user, 200, req, res)
 			break
 
 		default:
+			res.status(400).json({
+				success: false,
+			})
 			break
 	}
 }
