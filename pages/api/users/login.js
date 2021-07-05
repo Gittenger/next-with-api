@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 	switch (method) {
 		case 'POST':
 			if (!email | !password) {
-				res.status(400).json({
+				return res.status(400).json({
 					success: false,
 					message: 'Email and password required.',
 				})
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 			const user = await User.findOne({ email }).select('+password')
 
 			if (!user | !(await user.correctPassword(password, user.password))) {
-				res.status(401).json({
+				return res.status(401).json({
 					success: false,
 					message: 'Incorrect email or password',
 				})
