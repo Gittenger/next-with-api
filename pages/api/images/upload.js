@@ -2,9 +2,7 @@ import nc from 'next-connect'
 import { dbConnectMiddleware } from '../../../utils/dbConnect'
 import multer from 'multer'
 import Image from '../../../models/imageSchema'
-import authToken from '../../../utils/authToken'
-
-const { protect } = authToken
+import { protect } from '../../../utils/authMiddleware'
 
 function onNoMatch(req, res) {
 	res.status(405).json({
@@ -45,6 +43,7 @@ const uploadMiddleware = multer(multerOptions).single('image')
 
 const handler = nc(ncOptions)
 	.use(dbConnectMiddleware)
+	.use(protect)
 	.use(uploadMiddleware)
 	.post(async (req, res) => {
 		const img = await Image.create({ name: `${req.file.filename}` })
