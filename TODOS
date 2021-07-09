@@ -1,5 +1,4 @@
 SSR TASKS:
-- Set up protect middleware
 - Set up nodemailer
 - Forgot password, reset password, updateMe
 - Restrict route (create func?)
