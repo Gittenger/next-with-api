@@ -3,6 +3,7 @@ import { dbConnectMiddleware } from '../../../utils/dbConnect'
 import authToken from '../../../utils/authToken'
 import User from '../../../models/userSchema'
 import ncOptions from '../../../utils/ncUtils'
+import Email from '../../../utils/email'
 
 const { createAndSendToken } = authToken
 
@@ -17,6 +18,8 @@ const handler = nc(ncOptions)
 			password,
 			passwordConfirm,
 		})
+
+		await new Email(user, 'https://wwww.google.com').sendWelcome()
 
 		createAndSendToken(user, 200, req, res)
 	})
