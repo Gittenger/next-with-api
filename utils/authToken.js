@@ -35,66 +35,9 @@ export const createAndSendToken = (user, statusCode, req, res) => {
 	})
 }
 
-export const checkHeaders = async (req) => {
-	let token
-
-	if (
-		req.headers.authorization &&
-		req.headers.authorization.startsWith('Bearer')
-	) {
-		token = req.headers.authorization.split(' ')[1]
-	} else if (req.cookies.jwt) {
-		token = req.cookies.jwt
-	}
-
-	if (!token) {
-		return {
-			error: true,
-			status: 401,
-			message: 'You are not logged in. Please log in for access',
-		}
-	}
-
-	const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET)
-	const currentUser = await User.findById(decoded.id)
-	if (!currentUser) {
-		return {
-			error: true,
-			status: 401,
-			message: 'The user belonging to this token no longer exists',
-		}
-	}
-
-	if (currentUser.changedPasswordAfter(decoded.iat)) {
-		return {
-			error: true,
-			status: 401,
-			message: 'User recently changed password. Please log in again.',
-		}
-	}
-
-	return currentUser
-}
-
-export const protect = async (req, res) => {
-	const authUser = await checkHeaders(req)
-
-	if (authUser.error) {
-		res.status(authUser.status).json({
-			success: false,
-			message: authUser.message,
-		})
-		return null
-	} else {
-		return authUser
-	}
-}
-
 const authToken = {
 	signToken,
 	createAndSendToken,
-	protect,
-	checkHeaders,
 }
 
 export default authToken
