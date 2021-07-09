@@ -1,40 +1,19 @@
+import nc from 'next-connect'
 import User from '../../models/userSchema'
-import dbConnect from '../../utils/dbConnect'
-import authToken from '../../utils/authToken'
+import { dbConnectMiddleware } from '../../utils/dbConnect'
+import { protect } from '../../utils/authMiddleware'
+import ncOptions from '../../utils/ncUtils'
 
-const { protect } = authToken
+const handler = nc(ncOptions)
+	.use(dbConnectMiddleware)
+	.use(protect)
+	.get(async (req, res) => {
+		const users = await User.find()
 
-export default async function handler(req, res) {
-	const { method } = req
+		res.status(200).json({
+			success: true,
+			users,
+		})
+	})
 
-	await dbConnect()
-
-	switch (method) {
-		case 'GET':
-			try {
-				const authUser = await protect(req, res)
-
-				if (authUser.role !== 'admin') {
-					return res.status(403).json({
-						success: false,
-						message: 'You do not have permission to perform this action',
-					})
-				}
-				const users = await User.find()
-
-				res.status(200).json({
-					success: true,
-					users,
-				})
-			} catch (err) {
-				res.status(400).json({
-					success: false,
-					err,
-				})
-			}
-			break
-		default:
-			res.status(400).json({ success: false })
-			break
-	}
-}
+export default handler

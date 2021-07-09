@@ -1,32 +1,25 @@
+import nc from 'next-connect'
 import User from '../../../models/userSchema'
-import dbConnect from '../../../utils/dbConnect'
+import { dbConnectMiddleware } from '../../../utils/dbConnect'
+import ncOptions from '../../../utils/ncUtils'
 
-export default async function handler(req, res) {
-	const {
-		query: { id },
-		method,
-	} = req
+const handler = nc(ncOptions)
+	.use(dbConnectMiddleware)
+	.get(async (req, res) => {
+		const { id } = req.query
 
-	await dbConnect()
+		const user = await User.findById(id)
+		if (!user) {
+			res.status(404).json({
+				status: 404,
+				message: 'User not found',
+			})
+		} else {
+			res.status(200).json({
+				success: true,
+				user,
+			})
+		}
+	})
 
-	switch (method) {
-		case 'GET':
-			try {
-				const user = await User.findById(id)
-
-				if (!user) {
-					return res.status(404).json({
-						status: 404,
-						message: 'Not Found',
-					})
-				}
-				res.status(200).json({ user })
-			} catch (err) {
-				res.status(400).json({ success: false, err })
-			}
-			break
-		default:
-			res.status(400).json({ success: false })
-			break
-	}
-}
+export default handler

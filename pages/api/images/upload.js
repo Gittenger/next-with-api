@@ -3,17 +3,7 @@ import { dbConnectMiddleware } from '../../../utils/dbConnect'
 import multer from 'multer'
 import Image from '../../../models/imageSchema'
 import { protect } from '../../../utils/authMiddleware'
-
-function onNoMatch(req, res) {
-	res.status(405).json({
-		success: false,
-		message: `Method ${req.method} not allowed`,
-	})
-}
-
-const ncOptions = {
-	onNoMatch,
-}
+import ncOptions from '../../../utils/ncUtils'
 
 const storage = multer.diskStorage({
 	// first param of cb's is error
