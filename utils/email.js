@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer'
 import nodemailerSendgrid from 'nodemailer-sendgrid'
+import pug from 'pug'
+import { htmlToText } from 'html-to-text'
 
 export default class Email {
 	constructor(user, url) {
@@ -28,12 +30,18 @@ export default class Email {
 	}
 
 	async send(template, subject) {
+		const html = pug.renderFile(`./templates/${template}.pug`, {
+			url: this.url,
+			name: this.name,
+			subject,
+		})
+
 		const mailOptions = {
 			from: this.from,
 			to: this.to,
 			subject,
-			html: template === 'welcome' ? '<p>Welcome!</p>' : '<p>Default</p>',
-			text: 'This is the plain text',
+			html,
+			text: htmlToText(html),
 		}
 
 		await this.newTransport().sendMail(mailOptions)
