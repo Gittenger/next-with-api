@@ -1,7 +1,6 @@
 SSR TASKS:
-- Set up nodemailer
 - Forgot password, reset password, updateMe
-- Restrict route (create func?)
+- Restrict route middleware
 
 Later:
 integrate react carousel gallery
