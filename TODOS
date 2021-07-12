@@ -1,6 +1,7 @@
 SSR TASKS:
 - Forgot password, reset password, updateMe
-- Restrict route middleware
+- delete images from filesystem in delete images func
+- Delete single image
 
 Later:
 integrate react carousel gallery
