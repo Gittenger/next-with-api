@@ -2,7 +2,7 @@ import nc from 'next-connect'
 import { dbConnectMiddleware } from '../../../utils/dbConnect'
 import multer from 'multer'
 import Image from '../../../models/imageSchema'
-import { protect } from '../../../utils/authMiddleware'
+import { protect, restrict } from '../../../utils/authMiddleware'
 import ncOptions from '../../../utils/ncUtils'
 
 const storage = multer.diskStorage({
@@ -34,6 +34,7 @@ const uploadMiddleware = multer(multerOptions).single('image')
 const handler = nc(ncOptions)
 	.use(dbConnectMiddleware)
 	.use(protect)
+	.use(restrict('admin'))
 	.use(uploadMiddleware)
 	.post(async (req, res) => {
 		const img = await Image.create({ name: `${req.file.filename}` })
