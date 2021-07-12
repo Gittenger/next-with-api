@@ -40,3 +40,12 @@ export const protect = async (req, res, next) => {
 	req.user = currentUser
 	next()
 }
+
+export const restrict = (...roles) => (req, res, next) => {
+	if (!roles.includes(req.user.role)) {
+		return res.status(403).json({
+			success: false,
+			message: "You don't have permission to perform this action",
+		})
+	} else next()
+}
