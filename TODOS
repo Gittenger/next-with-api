@@ -1,6 +1,5 @@
 SSR TASKS:
 - Forgot password, reset password, updateMe
-- delete images from filesystem in delete images func
 - Delete single image
 
 Later:
