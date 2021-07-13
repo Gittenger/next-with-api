@@ -50,4 +50,8 @@ export default class Email {
 	async sendWelcome() {
 		await this.send('welcome', 'Welcome to the site!')
 	}
+
+	async sendPasswordReset() {
+		await this.send('resetPassword', 'Here is your password reset link')
+	}
 }
