@@ -15,7 +15,6 @@ const handler = nc(ncOptions)
 
 		fs.readdir('./public/img', (err, files) => {
 			if (!err) {
-				console.log(files)
 				files.forEach((file) => {
 					fs.unlink(path.join('./public/img', file), (err) => {
 						if (err) console.error(err)
