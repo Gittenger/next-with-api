@@ -1,6 +1,19 @@
 SSR TASKS:
-- reset password, updateMe
+- updateMe
+
+CLIENT TASKS:
+- Protect routes -- try data fetching with nextjs
+--protect image upload, image delete
+- Redirect on login success
+- Admin dashboard
+- Page for uploading images
+- Links to delete images -- one/all
+- Password reset form -- get reset token from url from email
+--Form will submit patch request using token
+- Other auth links -- forgotPW, logout, updatePW (in dashboard), signup
+
+- Others: get user, get all users, delete me
+
 
 Later:
-integrate react carousel gallery
 Deploy to Netlify
