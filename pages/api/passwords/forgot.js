@@ -17,7 +17,6 @@ const handler = nc(ncOptions)
 
 		const resetToken = user.createPasswordResetToken()
 
-		console.log(resetToken)
 		await user.save({ validateBeforeSave: false })
 
 		try {
