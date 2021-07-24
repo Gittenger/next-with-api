@@ -1,7 +1,7 @@
 import nc from '../../../middleware/nextConnect'
 import Cookies from 'cookies'
 
-const handler = nc(ncOptions).post((req, res) => {
+const handler = nc.post((req, res) => {
 	const cookies = new Cookies(req, res)
 	cookies.set('jwt', 'logged_out', {
 		expires: new Date(Date.now() + 10 * 1000),

@@ -6,7 +6,7 @@ import authToken from '../../../utils/server/authToken'
 
 const { createAndSendToken } = authToken
 
-const handler = nc(ncOptions)
+const handler = nc
 	.use(dbConnect)
 	.use(protect)
 	.patch(async (req, res) => {

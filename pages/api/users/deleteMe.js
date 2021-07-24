@@ -3,7 +3,7 @@ import User from '../../../models/userSchema'
 import dbConnect from '../../../middleware/dbConnect'
 import { protect } from '../../../middleware/authMiddleware'
 
-const handler = nc(ncOptions)
+const handler = nc
 	.use(dbConnect)
 	.use(protect)
 	.delete(async (req, res) => {

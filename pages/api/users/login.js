@@ -5,26 +5,24 @@ import authToken from '../../../utils/server/authToken'
 
 const { createAndSendToken } = authToken
 
-const handler = nc(ncOptions)
-	.use(dbConnect)
-	.post(async (req, res) => {
-		const { email, password } = req.body
+const handler = nc.use(dbConnect).post(async (req, res) => {
+	const { email, password } = req.body
 
-		if (!email || !password) {
-			res.status(400).json({
-				success: false,
-				message: 'Email and password required.',
-			})
-		}
+	if (!email || !password) {
+		res.status(400).json({
+			success: false,
+			message: 'Email and password required.',
+		})
+	}
 
-		const user = await User.findOne({ email }).select('+password')
+	const user = await User.findOne({ email }).select('+password')
 
-		if (!user || !(await user.correctPassword(password, user.password))) {
-			res.status(401).json({
-				success: false,
-				message: 'Incorrect email or password',
-			})
-		} else createAndSendToken(user, 200, req, res)
-	})
+	if (!user || !(await user.correctPassword(password, user.password))) {
+		res.status(401).json({
+			success: false,
+			message: 'Incorrect email or password',
+		})
+	} else createAndSendToken(user, 200, req, res)
+})
 
 export default handler

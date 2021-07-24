@@ -30,7 +30,7 @@ const multerOptions = {
 
 const uploadMiddleware = multer(multerOptions).single('image')
 
-const handler = nc(ncOptions)
+const handler = nc
 	.use(dbConnect)
 	.use(protect)
 	.use(restrict('admin'))
