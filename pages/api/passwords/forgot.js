@@ -1,11 +1,11 @@
 import User from '../../../models/userSchema'
 import nc from 'next-connect'
 import ncOptions from '../../../utils/ncUtils'
-import { dbConnectMiddleware } from '../../../utils/dbConnect'
+import dbConnect from '../../../middleware/dbConnect'
 import Email from '../../../utils/email'
 
 const handler = nc(ncOptions)
-	.use(dbConnectMiddleware)
+	.use(dbConnect)
 	.post(async (req, res) => {
 		const user = await User.findOne({ email: req.body.email })
 		if (!user) {

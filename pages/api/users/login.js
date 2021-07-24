@@ -1,5 +1,5 @@
 import nc from 'next-connect'
-import { dbConnectMiddleware } from '../../../utils/dbConnect'
+import dbConnect from '../../../middleware/dbConnect'
 import User from '../../../models/userSchema'
 import authToken from '../../../utils/authToken'
 import ncOptions from '../../../utils/ncUtils'
@@ -7,7 +7,7 @@ import ncOptions from '../../../utils/ncUtils'
 const { createAndSendToken } = authToken
 
 const handler = nc(ncOptions)
-	.use(dbConnectMiddleware)
+	.use(dbConnect)
 	.post(async (req, res) => {
 		const { email, password } = req.body
 

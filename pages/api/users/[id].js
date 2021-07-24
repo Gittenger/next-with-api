@@ -1,10 +1,10 @@
 import nc from 'next-connect'
 import User from '../../../models/userSchema'
-import { dbConnectMiddleware } from '../../../utils/dbConnect'
+import dbConnect from '../../../middleware/dbConnect'
 import ncOptions from '../../../utils/ncUtils'
 
 const handler = nc(ncOptions)
-	.use(dbConnectMiddleware)
+	.use(dbConnect)
 	.get(async (req, res) => {
 		const { id } = req.query
 

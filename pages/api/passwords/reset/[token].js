@@ -1,5 +1,5 @@
 import nc from 'next-connect'
-import { dbConnectMiddleware } from '../../../../utils/dbConnect'
+import dbConnect from '../../../../middleware/dbConnect'
 import User from '../../../../models/userSchema'
 import authToken from '../../../../utils/authToken'
 import ncOptions from '../../../../utils/ncUtils'
@@ -8,7 +8,7 @@ import crypto from 'crypto'
 const { createAndSendToken } = authToken
 
 const handler = nc(ncOptions)
-	.use(dbConnectMiddleware)
+	.use(dbConnect)
 	.patch(async (req, res) => {
 		const hashedToken = crypto
 			.createHash('sha256')

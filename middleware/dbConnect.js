@@ -17,7 +17,7 @@ if (!cached) {
 	cached = global.mongoose = { conn: null, promise: null }
 }
 
-export default async function dbConnect() {
+export async function connect() {
 	if (cached.conn) return cached.conn
 
 	if (!cached.promise) {
@@ -30,7 +30,7 @@ export default async function dbConnect() {
 			useCreateIndex: true,
 		}
 
-		cached.promise = mongoose.connect(URI, options).then((client) => {
+		cached.promise = mongoose.connect(URI, options).then(client => {
 			return client
 		})
 	}
@@ -38,7 +38,7 @@ export default async function dbConnect() {
 	return cached.conn
 }
 
-export async function dbConnectMiddleware(req, res, next) {
-	await dbConnect()
+export default async function dbConnect(req, res, next) {
+	await connect()
 	next()
 }

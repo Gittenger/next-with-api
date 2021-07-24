@@ -1,5 +1,5 @@
 import nc from 'next-connect'
-import { dbConnectMiddleware } from '../../../utils/dbConnect'
+import dbConnect from '../../../middleware/dbConnect'
 import multer from 'multer'
 import Image from '../../../models/imageSchema'
 import { protect, restrict } from '../../../middleware/authMiddleware'
@@ -32,7 +32,7 @@ const multerOptions = {
 const uploadMiddleware = multer(multerOptions).single('image')
 
 const handler = nc(ncOptions)
-	.use(dbConnectMiddleware)
+	.use(dbConnect)
 	.use(protect)
 	.use(restrict('admin'))
 	.use(uploadMiddleware)

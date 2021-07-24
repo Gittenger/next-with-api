@@ -1,4 +1,4 @@
-import { dbConnectMiddleware } from '../../../utils/dbConnect'
+import dbConnect from '../../../middleware/dbConnect'
 import Image from '../../../models/imageSchema'
 import nc from 'next-connect'
 import { protect, restrict } from '../../../middleware/authMiddleware'
@@ -7,7 +7,7 @@ import fs from 'fs'
 import path from 'path'
 
 const handler = nc(ncOptions)
-	.use(dbConnectMiddleware)
+	.use(dbConnect)
 	.use(protect)
 	.use(restrict('admin'))
 	.delete(async (req, res) => {
