@@ -1,7 +1,7 @@
 import { dbConnectMiddleware } from '../../utils/dbConnect'
 import Image from '../../models/imageSchema'
 import nc from 'next-connect'
-import { protect, restrict } from '../../utils/authMiddleware'
+import { protect, restrict } from '../../middleware/authMiddleware'
 import ncOptions from '../../utils/ncUtils'
 
 const handler = nc(ncOptions)

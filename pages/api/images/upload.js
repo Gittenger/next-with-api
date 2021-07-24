@@ -2,7 +2,7 @@ import nc from 'next-connect'
 import { dbConnectMiddleware } from '../../../utils/dbConnect'
 import multer from 'multer'
 import Image from '../../../models/imageSchema'
-import { protect, restrict } from '../../../utils/authMiddleware'
+import { protect, restrict } from '../../../middleware/authMiddleware'
 import ncOptions from '../../../utils/ncUtils'
 
 const storage = multer.diskStorage({

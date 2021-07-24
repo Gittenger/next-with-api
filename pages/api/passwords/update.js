@@ -1,7 +1,7 @@
 import nc from 'next-connect'
 import { dbConnectMiddleware } from '../../../utils/dbConnect'
 import User from '../../../models/userSchema'
-import { protect } from '../../../utils/authMiddleware'
+import { protect } from '../../../middleware/authMiddleware'
 import authToken from '../../../utils/authToken'
 import ncOptions from '../../../utils/ncUtils'
 

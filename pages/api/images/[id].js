@@ -1,7 +1,7 @@
 import { dbConnectMiddleware } from '../../../utils/dbConnect'
 import Image from '../../../models/imageSchema'
 import nc from 'next-connect'
-import { protect, restrict } from '../../../utils/authMiddleware'
+import { protect, restrict } from '../../../middleware/authMiddleware'
 import ncOptions from '../../../utils/ncUtils'
 import fs from 'fs'
 import path from 'path'
@@ -15,7 +15,7 @@ const handler = nc(ncOptions)
 		if (img) {
 			await Image.findByIdAndDelete(req.query.id)
 
-			fs.unlink(path.join('./public/img', img.name), (err) => {
+			fs.unlink(path.join('./public/img', img.name), err => {
 				if (err) console.error(err)
 			})
 
