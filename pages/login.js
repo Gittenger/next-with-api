@@ -2,6 +2,10 @@ import { useState } from 'react'
 import HeadEl from '../components/HeadEl'
 import styles from '../styles/login.module.scss'
 
+import { auth } from '../client-utils/auth'
+
+const { setAuthToken } = auth
+
 export default function Login() {
   const [values, setValues] = useState({
     email: '',
@@ -39,13 +43,12 @@ export default function Login() {
             console.log(data)
             setValues({ ...values, error: data.message })
           } else {
-            console.log(data)
-            // setAuthToken(res, () => {
-            //   setValues({
-            //     ...values,
-            //     error: '',
-            //   })
-            // })
+            setAuthToken(data, () => {
+              setValues({
+                ...values,
+                error: '',
+              })
+            })
           }
         }
       })
