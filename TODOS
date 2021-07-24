@@ -2,14 +2,13 @@ SSR TASKS:
 - updateMe
 
 CLIENT TASKS:
-- Clean up protected routes/utils
 - Redirect on login success
-- Admin dashboard
 - Page for uploading images
+- Logout link
 - Links to delete images -- one/all
 - Password reset form -- get reset token from url from email
 --Form will submit patch request using token
-- Other auth links -- forgotPW, logout, updatePW (in dashboard), signup
+- Other auth links -- forgotPW, updatePW (in dashboard), signup
 
 - Others: get user, get all users, delete me
 
