@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { useRouter } from 'next/router'
 
 const adminRoute = WrappedComponent => props => {
