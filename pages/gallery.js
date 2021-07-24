@@ -4,7 +4,7 @@ import HeadEl from '../components/HeadEl'
 import Link from 'next/link'
 import styles from '../styles/gallery.module.scss'
 import 'react-gallery-carousel/dist/index.css'
-import adminRoute from '../client-utils/adminRoute'
+import adminRoute from '../utils/client/adminRoute'
 
 function Gallery() {
 	const [images, setImages] = useState([])
@@ -16,13 +16,13 @@ function Gallery() {
 				'Content-Type': 'application/json',
 			},
 		})
-			.then((res) => res.json())
+			.then(res => res.json())
 			.then(({ images }) => {
 				setImages(
-					images.map((el) => ({ src: `http://localhost:3000/img/${el.name}` }))
+					images.map(el => ({ src: `http://localhost:3000/img/${el.name}` }))
 				)
 			})
-			.catch((err) => console.log(err))
+			.catch(err => console.log(err))
 
 		console.log(images)
 	}, [])
