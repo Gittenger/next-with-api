@@ -2,8 +2,7 @@ SSR TASKS:
 - updateMe
 
 CLIENT TASKS:
-- Protect routes -- try data fetching with nextjs
---protect image upload, image delete
+- Clean up protected routes/utils
 - Redirect on login success
 - Admin dashboard
 - Page for uploading images
