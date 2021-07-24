@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import Cookies from 'cookies'
 import { promisify } from 'util'
-import User from '../models/userSchema'
+import User from '../../models/userSchema'
 
 export const signToken = (id) =>
 	jwt.sign({ id }, process.env.JWT_SECRET, {
