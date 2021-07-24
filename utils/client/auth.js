@@ -13,3 +13,5 @@ export const auth = {
       : false
   },
 }
+
+export default auth
