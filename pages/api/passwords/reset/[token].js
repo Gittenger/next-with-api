@@ -1,7 +1,7 @@
 import nc from '../../../../middleware/nextConnect'
 import dbConnect from '../../../../middleware/dbConnect'
 import User from '../../../../models/userSchema'
-import authToken from '../../../../utils/authToken'
+import authToken from '../../../../utils/server/authToken'
 import crypto from 'crypto'
 
 const { createAndSendToken } = authToken

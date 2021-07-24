@@ -1,8 +1,8 @@
 import nc from '../../../middleware/nextConnect'
 import dbConnect from '../../../middleware/dbConnect'
-import authToken from '../../../utils/authToken'
+import authToken from '../../../utils/server/authToken'
 import User from '../../../models/userSchema'
-import Email from '../../../utils/email'
+import Email from '../../../utils/server/email'
 
 const { createAndSendToken } = authToken
 

@@ -1,7 +1,7 @@
 import User from '../../../models/userSchema'
 import nc from '../../../middleware/nextConnect'
 import dbConnect from '../../../middleware/dbConnect'
-import Email from '../../../utils/email'
+import Email from '../../../utils/server/email'
 
 const handler = nc(ncOptions)
 	.use(dbConnect)
