@@ -1,6 +1,5 @@
 import User from '../../../models/userSchema'
-import nc from 'next-connect'
-import ncOptions from '../../../utils/ncUtils'
+import nc from '../../../middleware/nextConnect'
 import dbConnect from '../../../middleware/dbConnect'
 import Email from '../../../utils/email'
 

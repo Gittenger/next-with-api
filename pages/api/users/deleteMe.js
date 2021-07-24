@@ -1,8 +1,7 @@
-import nc from 'next-connect'
+import nc from '../../../middleware/nextConnect'
 import User from '../../../models/userSchema'
 import dbConnect from '../../../middleware/dbConnect'
 import { protect } from '../../../middleware/authMiddleware'
-import ncOptions from '../../../utils/ncUtils'
 
 const handler = nc(ncOptions)
 	.use(dbConnect)

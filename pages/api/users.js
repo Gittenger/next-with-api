@@ -1,10 +1,9 @@
-import nc from 'next-connect'
 import User from '../../models/userSchema'
 import dbConnect from '../../middleware/dbConnect'
 import { protect } from '../../middleware/authMiddleware'
-import ncOptions from '../../utils/ncUtils'
+import nc from '../../middleware/nextConnect'
 
-const handler = nc(ncOptions)
+const handler = nc
 	.use(dbConnect)
 	.use(protect)
 	.get(async (req, res) => {

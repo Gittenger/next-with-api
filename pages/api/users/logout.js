@@ -1,6 +1,5 @@
-import nc from 'next-connect'
+import nc from '../../../middleware/nextConnect'
 import Cookies from 'cookies'
-import ncOptions from '../../../utils/ncUtils'
 
 const handler = nc(ncOptions).post((req, res) => {
 	const cookies = new Cookies(req, res)
