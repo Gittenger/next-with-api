@@ -4,8 +4,9 @@ import HeadEl from '../components/HeadEl'
 import Link from 'next/link'
 import styles from '../styles/gallery.module.scss'
 import 'react-gallery-carousel/dist/index.css'
+import adminRoute from '../client-utils/adminRoute'
 
-export default function Gallery() {
+function Gallery() {
 	const [images, setImages] = useState([])
 
 	useEffect(() => {
@@ -40,3 +41,5 @@ export default function Gallery() {
 		</div>
 	)
 }
+
+export default adminRoute(Gallery)
